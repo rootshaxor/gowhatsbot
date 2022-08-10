@@ -1,7 +1,7 @@
 <img src="gowhatsbot.png" width="30%"/>
 
 # GoWhatsBot : Apa itu ?
-GoWhatsBot adalah Bot WhatsApp yang dibangun dengan Go-lang bebasiskan library [` whatsmeow `](github.com/tulir/whatsmeow).
+GoWhatsBot adalah Bot WhatsApp yang dibangun dengan Go-lang bebasiskan library [` whatsmeow `](https://github.com/tulir/whatsmeow).
 
 
 # Setup
@@ -47,15 +47,23 @@ GOOS=linux GOARCH=amd64 CGO_ENABLED=1 go build -v -ldflags "-s -w" -o ./linux-x6
 
 Selebihnya dapat dilihat pada berkas ` build `.
 
+# Kontribusi ?
+Silahkan jika ingin melakukan kontribusi dengan membuka issue, pull request maupun diskusi.
+
+# Donasi ?
+Silahkan untuk melakukan donasi jika berkenan.
+- Saweria : [Ma'mur Rezeki](https://saweria.co/mamurrezeki)
+
+
 
 # Library ?
-- [whatsmeow](go.mau.fi/whatsmeow)
-- [qrterminal](github.com/mdp/qrterminal)
-- [pgx](github.com/jackc/pgx)
-- [go-sqlite3](github.com/mattn/go-sqlite3)
-- [barcode](github.com/boombuler/barcode)
-- [go-qrcode](github.com/skip2/go-qrcode)
-- [imageorient](github.com/disintegration/imageorient)
-- [imaging](github.com/disintegration/imaging)
-- [webp](github.com/chai2010/webp)
-- [gozxing](github.com/makiuchi-d/gozxing)
+- [whatsmeow](https://go.mau.fi/whatsmeow)
+- [qrterminal](https://github.com/mdp/qrterminal)
+- [pgx](https://github.com/jackc/pgx)
+- [go-sqlite3](https://github.com/mattn/go-sqlite3)
+- [barcode](https://github.com/boombuler/barcode)
+- [go-qrcode](https://github.com/skip2/go-qrcode)
+- [imageorient](https://github.com/disintegration/imageorient)
+- [imaging](https://github.com/disintegration/imaging)
+- [webp](https://github.com/chai2010/webp)
+- [gozxing](https://github.com/makiuchi-d/gozxing)
