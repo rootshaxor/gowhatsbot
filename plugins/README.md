@@ -24,7 +24,7 @@ import (
 	"main/core/whats"
 	"main/core/validators"
 	"main/plugins"
-    "log"
+	"log"
 
 	waProto "go.mau.fi/whatsmeow/binary/proto"
 	"google.golang.org/protobuf/proto"
