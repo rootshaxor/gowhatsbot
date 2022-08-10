@@ -20,7 +20,7 @@ Pada contoh diatas, driver yang akan di gunakan adalah ` sqlite3 ` dengan alamat
 Secara default ada 2 library driver database yang tesedia yaitu ` pgx ` dan ` go-sqlite3 `, perlu untuk menambahkan baris kode jika ingin menambahkan dukungan layanan database lainnya.
 
 ## Autoload
-GoWhatsBot akan membuat berkas ` autoload.go ` untuk mendaftarkan packages pada `./plugins`. Daftar autoload tidak akan dibuat ulang jika tidak ada penambahan/penghapusan package pada direktori `./plugins`. Atau bisa di tambahkan secara manual dengan format standar :
+GoWhatsBot secara otomatis akan membuat berkas ` autoload.go ` untuk mendaftarkan packages pada `./plugins`. Daftar autoload tidak akan dibuat ulang jika tidak ada penambahan/penghapusan package pada direktori `./plugins`. Atau bisa di tambahkan secara manual dengan format standar :
 ```go
 package main
 
