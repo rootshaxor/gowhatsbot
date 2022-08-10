@@ -30,6 +30,21 @@ import (
 
 ```
 
+## Menjalankan & Kompilasi
+
+### Menjalankan
+Untuk menjalankan bot tanpa kompilasi cukup untuk menjalankan perintah :
+```sh
+go run .
+```
+
+### Kompilasi
+Untuk kompilasi agar dapat mendukung driver database maupun library yang menggunakan sumber program dari bahasa C :
+```sh
+GOOS=linux GOARCH=amd64 CGO_ENABLED=1 go build -v -ldflags "-s -w" -o ./linux-x64
+
+```
+
 
 # Library ?
 - [whatsmeow](go.mau.fi/whatsmeow)
