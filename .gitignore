@@ -1,0 +1,10 @@
+*.db
+bin/
+tmp/
+*.list
+*.log
+Media/
+*#*
+vendor/
+.models/
+.hide/

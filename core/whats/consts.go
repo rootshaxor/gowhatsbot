@@ -1,0 +1,36 @@
+package whats
+
+type Reactions string
+
+const (
+	ReactLove          Reactions = "❤️"
+	ReactHandLike      Reactions = "👍"
+	ReactHandBad       Reactions = "👎"
+	ReactHandFolded    Reactions = "🙏"
+	ReactFaceHot       Reactions = "🥵"
+	ReactFacePalm      Reactions = "🤦‍♂️"
+	ReactFaceClown     Reactions = "🤡"
+	ReactFaceZany      Reactions = "🤪"
+	ReactFaceVomiting  Reactions = "🤮"
+	ReactFaceTired     Reactions = "😫"
+	ReactFaceLying     Reactions = "🤥"
+	ReactFaceTear      Reactions = "🥲"
+	ReactFaceLove      Reactions = "🥰"
+	ReactFaceMoney     Reactions = "🤑"
+	ReactFaceInnoncent Reactions = "😇"
+	ReactFaceWow       Reactions = "😮"
+	ReactFaceJoy       Reactions = "😂"
+	ReactFaceSad       Reactions = "😥"
+	ReactFaceHugging   Reactions = "🤗"
+	ReactFlagIndonesia Reactions = "🇮🇩"
+	ReactHundred       Reactions = "💯"
+	ReactMedalGold     Reactions = "🥇"
+	ReactMedalSilver   Reactions = "🥈"
+	ReactMedalBronze   Reactions = "🥉"
+	ReactAirplane      Reactions = "✈️"
+	ReactPlester       Reactions = "🩹"
+	ReactAlarm         Reactions = "⏰"
+	ReactBadminton     Reactions = "🏸"
+	ReactNotEntry      Reactions = "⛔"
+	ReactRocket        Reactions = "🚀"
+)

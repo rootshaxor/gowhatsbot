@@ -1,0 +1,16 @@
+echo "# Build for Linux ------------------------------------"
+echo "# Linux x64 / amd64"
+GOOS=linux GOARCH=amd64 CGO_ENABLED=1 go build -v -ldflags "-s -w" -o bin/linux-x64
+echo "# Linux x86 / ix86"
+GOOS=linux GOARCH=386 CGO_ENABLED=1 go build -v -ldflags "-s -w" -o bin/linux-x86
+
+echo "# Build for Windows ----------------------------------"
+echo "# Windows x86 / ix86"
+# GOOS=windows GOARCH=386 CGO_ENABLED=1 go build -v -ldflags "-s -w" -o bin/win-x86.exe
+echo "# Windows x64 / amd64"
+GOOS=windows GOARCH=amd64 CGO_ENABLED=1 CC=i686-w64-mingw32-g++ go build -v -ldflags "-s -w" -o bin/win-x64.exe
+
+echo "# Build for Android -----------------------------------"
+# GOOS=android GOARCH=386 go build -v -ldflags "-s -w" -o bin/android-x86
+echo "# Android aarch64 / arm64"
+GOOS=android GOARCH=arm64 CGO_ENABLED=1 NDK=/media/erzqy/drive-1/dev/env/user/android-ndk-r23c CC=$NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android21-clang go build -v -ldflags "-s -w" -o bin/android-arm64

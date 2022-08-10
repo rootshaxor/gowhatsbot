@@ -1,0 +1,5 @@
+{
+    "driver": "sqlite3",
+    "sqlite3": "file:whatsapp.db?_foreign_keys=on",
+    "pgx": "postgres://user:pass@localhost:5432/wadb"
+}
