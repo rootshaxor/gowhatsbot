@@ -6,7 +6,6 @@ import (
 	"main/core/helper"
 	"main/core/texts"
 	"main/core/types"
-	"main/core/validators"
 	"main/core/whats"
 	"main/plugins"
 	"strings"
@@ -16,10 +15,9 @@ import (
 	"go.mau.fi/whatsmeow/types/events"
 )
 
-var PlugHelp = plugins.Add("Helper", validators.ValidateFromeMe)
+var PlugHelp = plugins.Add("Helper", helpValidator)
 
 func init() {
-	// help.SetDisabled()
 
 	PlugHelp.CommandAddMany([]types.Command{
 		{
@@ -27,7 +25,6 @@ func init() {
 			Description: "Show all command menu",
 			Usage:       "{cmd}",
 			Execute:     helpCommand,
-			// Disabled:    true,
 		},
 	})
 
