@@ -51,8 +51,7 @@ func init() {
 			// Jika di set true maka tidak akan diperiksa kecocokan command
 			// Langsung di ekseskusi tanpa dicek dengan Cmd yang ada diatas
 			Passed: false,
-
-},
+		},
 	})
 }
 
