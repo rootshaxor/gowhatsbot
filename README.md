@@ -1,4 +1,8 @@
-<img src="gowhatsbot.png" width="30%"/>
+<div align="center">
+    <img src="gowhatsbot.png" width="40%" /><br>
+    <h1>GoWhatsBot</h1>
+    <br>
+</div>
 
 # GoWhatsBot : Apa itu ?
 GoWhatsBot adalah Bot WhatsApp yang dibangun dengan Go-lang bebasiskan library [` whatsmeow `](https://github.com/tulir/whatsmeow).
