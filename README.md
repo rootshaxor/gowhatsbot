@@ -45,6 +45,8 @@ GOOS=linux GOARCH=amd64 CGO_ENABLED=1 go build -v -ldflags "-s -w" -o ./linux-x6
 
 ```
 
+Selebihnya dapat dilihat pada berkas ` build `.
+
 
 # Library ?
 - [whatsmeow](go.mau.fi/whatsmeow)

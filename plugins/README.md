@@ -45,16 +45,14 @@ func init() {
 			Usage:       "{cmd} url",
 			Execute:     commandWget,
 
-            // Jika di set true command tidak akan di eksekusi
-            Disable: false 
+			// Jika di set true command tidak akan di eksekusi
+			Disable: false,
 
-            // Jika di set true maka tidak akan diperiksa kecocokan command
-            // Langsung di ekseskusi tanpa dicek dengan Cmd yang ada diatas
-            Passed: false
+			// Jika di set true maka tidak akan diperiksa kecocokan command
+			// Langsung di ekseskusi tanpa dicek dengan Cmd yang ada diatas
+			Passed: false,
 
-
-
-		},
+},
 	})
 }
 
