@@ -12,15 +12,33 @@ func NewButtonsMessage(header interface{}, content, footer string, buttons []*wa
 func NewButtons(header interface{}, content, footer string, buttons []*waProto.ButtonsMessage_Button, ctx *waProto.ContextInfo) (*waProto.ButtonsMessage, error) {
 
 	var message = &waProto.ButtonsMessage{
-		HeaderType:  waProto.ButtonsMessage_EMPTY.Enum(),
 		ContentText: &content,
 		FooterText:  &footer,
 		Buttons:     buttons,
 		ContextInfo: ctx,
 	}
 
-	if header != nil {
-		message.Header = header.(*waProto.ButtonsMessage_Text)
+	switch hd := header.(type) {
+	case *waProto.ButtonsMessage_DocumentMessage:
+		message.HeaderType = waProto.ButtonsMessage_DOCUMENT.Enum()
+		message.Header = hd
+
+	case *waProto.ButtonsMessage_ImageMessage:
+		message.HeaderType = waProto.ButtonsMessage_IMAGE.Enum()
+		message.Header = hd
+
+	case *waProto.ButtonsMessage_VideoMessage:
+		message.HeaderType = waProto.ButtonsMessage_VIDEO.Enum()
+		message.Header = hd
+
+	case *waProto.ButtonsMessage_Text:
+		message.HeaderType = waProto.ButtonsMessage_TEXT.Enum()
+		message.Header = hd
+
+	case *waProto.ButtonsMessage_LocationMessage:
+		message.HeaderType = waProto.ButtonsMessage_LOCATION.Enum()
+		message.Header = hd
+
 	}
 
 	return message, nil
