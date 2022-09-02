@@ -2,7 +2,6 @@ package texts
 
 import (
 	"fmt"
-	"main/core/types"
 	"strings"
 )
 
@@ -20,7 +19,7 @@ func ArrayS(s ...string) []string {
 	return s
 }
 
-func QuoteBy(text string, qouter ...types.QouteChar) string {
+func QuoteBy(text string, qouter ...QouteChar) string {
 	for _, quote := range qouter {
 		text = fmt.Sprintf("%s%s%s", quote, strings.TrimSpace(text), quote)
 	}

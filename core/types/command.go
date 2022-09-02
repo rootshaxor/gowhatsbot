@@ -8,8 +8,7 @@ import (
 	"go.mau.fi/whatsmeow/types/events"
 )
 
-type CommandExecute func(string, []string, Command, *events.Message, *waProto.ContextInfo, *whatsmeow.Client) error
-type Validator func(interface{}, *whatsmeow.Client) (bool, error)
+type CommandExecute func(string, []string, *Command, *events.Message, *waProto.ContextInfo, *whatsmeow.Client) error
 
 type Command struct {
 	Cmd         []string       `json:"cmd"`

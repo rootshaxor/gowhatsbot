@@ -6,23 +6,25 @@ import (
 	"go.mau.fi/whatsmeow"
 )
 
+type Validator func(interface{}, *whatsmeow.Client) (bool, error)
+
 type Plugin struct {
-	Name        string    `json:"name"`
-	Description string    `json:"description"`
-	Commands    []Command `json:"commands"`
-	Tags        []string  `json:"tags"`
-	Permissions []string  `json:"permissions"`
-	Disabled    bool      `json:"disabled"`
-	Validate    Validator `json:"validate"`
+	Name        string     `json:"name"`
+	Description string     `json:"description"`
+	Commands    []*Command `json:"commands"`
+	Tags        []string   `json:"tags"`
+	Permissions []string   `json:"permissions"`
+	Disabled    bool       `json:"disabled"`
+	Validate    Validator  `json:"validate"`
 }
 
-func (p *Plugin) CommandAdd(cmd Command) int {
+func (p *Plugin) CommandAdd(cmd *Command) int {
 	p.Commands = append(p.Commands, cmd)
 
 	return len(p.Commands)
 }
 
-func (p *Plugin) CommandAddMany(cmds []Command) int {
+func (p *Plugin) CommandAddMany(cmds []*Command) int {
 	for _, c := range cmds {
 		p.CommandAdd(c)
 	}
@@ -30,7 +32,7 @@ func (p *Plugin) CommandAddMany(cmds []Command) int {
 	return len(p.Commands)
 }
 
-func (p *Plugin) CommandCopy(n string) Command {
+func (p *Plugin) CommandCopy(n string) *Command {
 	for _, c := range p.Commands {
 		for _, cc := range c.Cmd {
 			if n == cc {
@@ -39,7 +41,7 @@ func (p *Plugin) CommandCopy(n string) Command {
 		}
 	}
 
-	return Command{}
+	return &Command{}
 }
 
 func (p *Plugin) Call(i interface{}, a *whatsmeow.Client) []error {

@@ -11,11 +11,27 @@ import (
 	"google.golang.org/protobuf/proto"
 )
 
-func SendTextMessage(event *events.Message, text string, ctx *waProto.ContextInfo, client *whatsmeow.Client) (whatsmeow.SendResponse, error) {
+type HandlerSentMessage func(waTypes.JID, string, *waProto.Message)
+
+var handlersSentMessage = []HandlerSentMessage{}
+
+func AddSentHandler(handler HandlerSentMessage) {
+	handlersSentMessage = append(handlersSentMessage, handler)
+}
+
+func SendTextMessage(jid waTypes.JID, text string, ctx *waProto.ContextInfo, client *whatsmeow.Client) (whatsmeow.SendResponse, error) {
 	if text_message, err := NewExtendedMessage(text, ctx); err != nil {
 		return whatsmeow.SendResponse{}, err
 	} else {
-		return client.SendMessage(context.Background(), event.Info.Chat, whatsmeow.GenerateMessageID(), text_message)
+		if resp, err := client.SendMessage(context.Background(), jid, whatsmeow.GenerateMessageID(), text_message); err != nil {
+			return resp, err
+		} else {
+			for _, handler := range handlersSentMessage {
+				handler(jid, resp.ID, text_message)
+			}
+
+			return resp, err
+		}
 	}
 }
 
@@ -32,7 +48,15 @@ func SendReactMessage(event *events.Message, react Reactions, client *whatsmeow.
 		},
 	}
 
-	return client.SendMessage(context.Background(), event.Info.Chat, whatsmeow.GenerateMessageID(), this_message)
+	if resp, err := client.SendMessage(context.Background(), event.Info.Chat, whatsmeow.GenerateMessageID(), this_message); err != nil {
+		return resp, err
+	} else {
+		for _, handler := range handlersSentMessage {
+			handler(event.Info.Chat, resp.ID, this_message)
+		}
+
+		return resp, err
+	}
 }
 
 func SendChatPresence(event *events.Message, media waTypes.ChatPresenceMedia, state waTypes.ChatPresence, client *whatsmeow.Client) error {
@@ -56,6 +80,14 @@ func SendStopRecording(event *events.Message, client *whatsmeow.Client) error {
 	return SendChatPresence(event, waTypes.ChatPresenceMediaAudio, waTypes.ChatPresencePaused, client)
 }
 
-func SendMessage(chat_jid waTypes.JID, message *waProto.Message, client *whatsmeow.Client) (whatsmeow.SendResponse, error) {
-	return client.SendMessage(context.Background(), chat_jid, whatsmeow.GenerateMessageID(), message)
+func SendMessage(jid waTypes.JID, message *waProto.Message, client *whatsmeow.Client) (whatsmeow.SendResponse, error) {
+	if resp, err := client.SendMessage(context.Background(), jid, whatsmeow.GenerateMessageID(), message); err != nil {
+		return resp, err
+	} else {
+		for _, handler := range handlersSentMessage {
+			handler(jid, resp.ID, message)
+		}
+
+		return resp, err
+	}
 }

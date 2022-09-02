@@ -2,7 +2,6 @@ package whats
 
 import (
 	"context"
-	"net/http"
 	"os"
 
 	waProto "go.mau.fi/whatsmeow/binary/proto"
@@ -18,7 +17,7 @@ func NewStickerMessage(data []byte, animated bool, ctx *waProto.ContextInfo, cli
 
 func NewSticker(data []byte, animated bool, ctx *waProto.ContextInfo, client *whatsmeow.Client) (*waProto.StickerMessage, error) {
 
-	var mimetype = http.DetectContentType(data)
+	var mimetype = "image/webp"
 	if up, err := client.Upload(context.Background(), data, whatsmeow.MediaImage); err != nil {
 		return nil, err
 	} else {

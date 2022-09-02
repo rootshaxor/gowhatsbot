@@ -8,10 +8,30 @@ import (
 )
 
 var List = types.NewPluginList()
-var WhatsClient *whatsmeow.Client
 
-func Add(name string, vd types.Validator) *types.Plugin {
-	return List.Add(name, vd)
+var Add = List.Add
+var All = List.All
+var GetOne = List.GetOne
+var SetDisable = List.SetDisable
+var SetEnable = List.SetEnable
+var SwitchDisable = List.SwitchDisable
+var SwitchDisableCommand = List.SwitchDisableCommand
+
+func PluginExecutor(e interface{}, client *whatsmeow.Client) {
+
+	for _, a := range All() {
+		if a.Validate != nil {
+			if show, err := a.Validate(e, client); err != nil {
+				if show {
+					log.Println(err)
+				}
+			} else {
+				if errs := a.Call(e, client); len(errs) > 0 {
+					log.Println(errs)
+				}
+			}
+		}
+	}
 }
 
 func init() {

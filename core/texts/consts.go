@@ -1,4 +1,4 @@
-package types
+package texts
 
 type QouteChar string
 

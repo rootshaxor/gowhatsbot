@@ -51,7 +51,7 @@ func plugValidator(i interface{}, client *whatsmeow.Client) (bool, error) {
 func init() {
   PluginDownloader.SetDisable() // jika ingin menonaktifkannya
 
-  PluginDownloader.CommandAddMany([]types.Command{
+  PluginDownloader.CommandAddMany([]*types.Command{
     {
       Cmd:         []string{".wget", ".wg"},
       Description: "Download file",
@@ -77,7 +77,7 @@ func init() {
 
 // nilai return adalah error
 
-func commandWget(pattern string, args []string, cmd types.Command, event *events.Message, ctx *waProto.ContextInfo, client *whatsmeow.Client) error {
+func commandWget(pattern string, args []string, cmd *types.Command, event *events.Message, ctx *waProto.ContextInfo, client *whatsmeow.Client) error {
 
   var msg = &waProto.Message{}
   var resp, err = whats.SendMessage(event.Info.Chat, msg, client)
@@ -102,7 +102,7 @@ import (
 func init() {
 
     // Dapat menambahkan command lain dengan variable Plugin yang sama
-    PluginDownloader.CommandAddMany([]types.Command{
+    PluginDownloader.CommandAddMany([]*types.Command{
         {
             ...
         },

@@ -6,7 +6,9 @@ import (
 	"errors"
 	"fmt"
 	"image"
+	"image/jpeg"
 	"io/fs"
+	"log"
 	"net/http"
 	"os"
 	"path"
@@ -126,6 +128,12 @@ func ImageReOrient(b []byte) (image.Image, error) {
 
 func ByteToWebp(b []byte) (image.Image, error) {
 
+	if ii, err := jpeg.Decode(bytes.NewBuffer(b)); err == nil {
+		if bb, err := ImageToByte(ii, imaging.JPEG); err == nil {
+			b = bb
+		}
+	}
+
 	if i, err := webp.Decode(bytes.NewReader(b)); err != nil {
 		return nil, err
 	} else {
@@ -141,6 +149,29 @@ func ImageToWebp(img image.Image) (image.Image, error) {
 	}
 
 	return ByteToImage(b.Bytes())
+}
+
+func ByteToWebpByte(b []byte) ([]byte, error) {
+
+	if bb, err := ByteImageToByte(b); err == nil {
+		b = bb
+	}
+
+	if wp, err := webp.Decode(bytes.NewReader(b)); err != nil {
+		return nil, err
+	} else {
+
+		var buff bytes.Buffer
+
+		if err := webp.Encode(&buff, wp, &webp.Options{Lossless: true}); err != nil {
+			return nil, err
+		} else {
+
+			log.Println(http.DetectContentType(buff.Bytes()))
+			return buff.Bytes(), nil
+		}
+
+	}
 }
 
 func WebpToByte(w image.Image) ([]byte, error) {

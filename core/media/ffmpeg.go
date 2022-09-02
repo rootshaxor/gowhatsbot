@@ -59,7 +59,6 @@ func FfProbe(input_name string, combine bool, argumenst []string) (map[string]in
 				return nil, o, errors.New("can't extract stream probe")
 
 			}
-
 		}
 	}
 }

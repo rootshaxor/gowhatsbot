@@ -37,21 +37,8 @@ func main() {
 }
 
 func eventHandler(e interface{}) {
-	plugins.WhatsClient = GoWhatsClient.GetClient()
+	plugins.PluginExecutor(e, GoWhatsClient.GetClient())
 
-	for _, a := range plugins.List.All() {
-		if a.Validate != nil {
-			if show, err := a.Validate(e, GoWhatsClient.GetClient()); err != nil {
-				if show {
-					log.Println(err)
-				}
-			} else {
-				if errs := a.Call(e, GoWhatsClient.GetClient()); len(errs) > 0 {
-					log.Println(errs)
-				}
-			}
-		}
-	}
 }
 
 type Pkg struct{}
